@@ -10,7 +10,7 @@ exports.handleRequest = function (req, res, resource) {
 
   if(action === 'save') {
     //write to file
-    httpHelpers.addUrlToList(targetURL);
+    archive.addUrlToList(targetURL);
     //redirect loading.html
   } else if (action === 'see') {
 
