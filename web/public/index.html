@@ -2,11 +2,40 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="styles.css" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
-  Enter a URL here:
-  <form method="POST">
-    <input type="input" name="url"></input>
-  </form>
+  Welcome to the Web Historian:
+  <div>
+    <input type="input" name="url" class="see-input"></input>
+    <button class="see-button">See Archived Site:</button>
+  </div>
+  <div>
+    <input type="input" name="url" class="save-input"></input>
+    <button class="save-button">Save Site:</button>
+  </div>
+
+  <script>
+    $('.see-button').on('click', function() {
+      sendRequest($('.see-input').val(), 'see');
+    });
+    $('.save-button').on('click', function() {
+      sendRequest($('.save-input').val(), 'save');
+    });
+
+    function sendRequest(input, type) {
+      $.ajax({
+        url: 'http://127.0.0.1:8080' + '/' + type + '/' + input,
+        type: 'GET',
+        success: function() {
+          console.log('Send Successful');
+        },
+        error: function() {
+          console.log('Send Failure');
+        }
+      });
+    }
+
+  </script>
 </body>
 </html>
