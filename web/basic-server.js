@@ -1,5 +1,6 @@
 var http = require("http");
 var handler = require("./request-handler");
+var archive = require('../helpers/archive-helpers');
 
 var router = {
   '/': true,
@@ -18,5 +19,7 @@ var server = http.createServer(function(req, res) {
 
 });
 console.log("Listening on http://" + ip + ":" + port);
+archive.initializeStorage();
+
 server.listen(port, ip);
 

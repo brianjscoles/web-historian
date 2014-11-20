@@ -25,13 +25,44 @@ exports.initialize = function(pathsObj){
 // The following function names are provided to you to suggest how you might
 // modularize your code. Keep it clean!
 
+exports.readFile = function(address, callback) {
+  fs.readFile(address, {encoding: 'utf8'}, callback);
+};
+
+exports.writeFile = function(data, address, callback) {
+  data = JSON.stringify(data);
+  fs.writeFile(address, data, callback);
+};
+
+exports.initializeStorage = function() {
+  exports.readFile(exports.paths.list, function(err, data) {
+    if(data === 'EMPTY\n') {
+      var storage = {
+        sites: {
+          'www.google.com': 'READY'
+        },
+        queued: []
+      };
+      exports.writeFile(storage, exports.paths.list, function(err, data) {
+        console.log('File Initialized!');
+      });
+    } else {
+      console.log('File Was Already Initialized');
+    }
+
+  });
+};
+
 exports.readListOfUrls = function(){
 };
 
 exports.isUrlInList = function(){
 };
 
-exports.addUrlToList = function(){
+exports.addUrlToList = function(targetURL){
+  exports.readFile(exports.paths.list, function(err, data) {
+    var storage = JSON.parse(data);
+  });
 };
 
 exports.isURLArchived = function(){
