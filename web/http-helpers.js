@@ -11,11 +11,19 @@ exports.headers = headers = {
 };
 
 
-exports.sendResponse = sendResponse = function(res, statusCode, data){
+exports.sendResponse = sendResponse = function(res, statusCode, data, options){
+  console.log("sending a response!")
   statusCode = statusCode || 200;
-
+  if(options){
+    for(var key in options){
+      if(options.hasOwnProperty(key)){
+        res.setHeader(key, options[key]);
+      }
+    }
+    res.writeHead(statusCode, headers);
+  } else {
   res.writeHead(statusCode, headers);
-
+  }
   if(data) {
     res.end(data);
   } else {
@@ -23,7 +31,7 @@ exports.sendResponse = sendResponse = function(res, statusCode, data){
   }
 };
 
-exports.serveAssets = function(res, address, callback) {
+exports.serveAssets = function(res, address) {
   // Write some code here that helps serve up your static files!
   // (Static files are things like html (yours or archived from others...), css, or anything that doesn't change often.)
   fs.readFile(address, function(err, data) {

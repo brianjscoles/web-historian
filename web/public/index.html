@@ -27,11 +27,13 @@
       $.ajax({
         url: 'http://127.0.0.1:8080' + '/' + type + '/' + input,
         type: 'GET',
-        success: function() {
-          console.log('Send Successful');
+        success: function(data) {
+          console.log('Send Successful', data);
+          window.location.replace(data)
         },
         error: function() {
           console.log('Send Failure');
+          //404
         }
       });
     }

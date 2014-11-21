@@ -75,7 +75,11 @@ exports.addUrlToList = function(targetURL){
   });
 };
 
-exports.isURLArchived = function(){
+exports.getURLStatus = function(targetURL, callback){
+  exports.readFile(exports.paths.list, function(err, data) {
+    var storage = JSON.parse(data);
+    callback(targetURL, storage.sites[targetURL]);
+  });
 };
 
 exports.downloadUrl = function(site){

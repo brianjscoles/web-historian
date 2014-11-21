@@ -1,1 +1,1 @@
-{"sites":{"www.google.com":"READY","www.cnn.com":"READY","www.amazon.com":"READY","www.nytimes.com":"READY","www.purple.com":"READY","www.walmart.com":"READY"},"queued":[]}
+{"sites":{"www.google.com":"READY","www.cnn.com":"READY","www.amazon.com":"READY","www.nytimes.com":"READY","www.purple.com":"READY","www.walmart.com":"READY","www.twitter.com":"QUEUED","":"QUEUED","asdf":"QUEUED"},"queued":["www.twitter.com","","asdf"]}
